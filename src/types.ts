@@ -1,10 +1,8 @@
+export type Need = 'sleep' | 'food' | 'social'
+
 export type Npc = {
     name: string;
-    needs: {
-        sleep: number;
-        food: number;
-        social: number;
-    };
+    needs: Record<Need, number>;
     location: {
         home: string;
         current: string;

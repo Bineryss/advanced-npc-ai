@@ -1,4 +1,4 @@
-import { Npc } from "./types";
+import { Need, Npc } from "./types";
 
 export function createNPC(name: string, homeLocation: string): Npc {
     return {
@@ -18,7 +18,6 @@ export function createNPC(name: string, homeLocation: string): Npc {
 
 export function updateNeeds(npc: Npc): Npc {
     const needMultiplier = 10
-
     return {
         ...npc,
         needs: {
@@ -29,3 +28,8 @@ export function updateNeeds(npc: Npc): Npc {
         }
     }
 }
+
+export function fulfillNeed(npc: Npc, need: Need, ammount: number): Npc {
+    return npc
+}
+

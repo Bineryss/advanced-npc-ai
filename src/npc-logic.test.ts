@@ -1,4 +1,6 @@
-import { createNPC, updateNeeds } from "./npc-logic"
+import { createNPC, fulfillNeed, updateNeeds } from "./npc-logic"
+import { Npc } from "./types"
+import { pipe } from "./utils"
 
 describe('npc logic', () => {
     it('should create a npc', () => {
@@ -31,5 +33,9 @@ describe('npc logic', () => {
             ...npc,
             needs: { sleep: 0, food: 0, social: 0 },
         })
+    })
+    it('should fulfill needs', () => {
+        const npc = updateNeeds(createNPC('bob', 'under the bridge'))
+        const fullFilledNpc = fulfillNeed(npc, 'sleep', 10)
     })
 })
