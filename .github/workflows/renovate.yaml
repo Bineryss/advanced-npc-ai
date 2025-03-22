@@ -1,0 +1,25 @@
+name: Renovate
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Runs at 00:00 UTC every week on monday
+  workflow_dispatch:  # Allows manual triggering
+    inputs:
+      logLevel:
+        description: "Override default log level"
+        required: false
+        default: "info"
+        type: string
+      overrideSchedule:
+        description: "Override all schedules"
+        required: false
+        default: "false"
+        type: string
+
+jobs:
+  renovate:
+    uses: Bineryss/renovate-config/.github/workflows/renovate.yaml@main
+    with:
+      logLevel: ${{ inputs.logLevel || 'info' }}
+      overrideSchedule: ${{ github.event.inputs.overrideSchedule == 'true' && '{''schedule'':null}' || '' }}
+    secrets: inherit

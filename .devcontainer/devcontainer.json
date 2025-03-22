@@ -1,0 +1,27 @@
+{
+	"name": "JavaScript Development Container",
+	"dockerFile": "Dockerfile",
+	"remoteUser": "node",
+	"overrideCommand": false,
+	"mounts": [
+		"source=//var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+		"source=pnpm-cache,target=/home/node/.cache/pnpm,type=volume",
+		"source=act-tasks,target=/home/node/.cache/act,type=volume"
+	],
+	"containerEnv": {
+		"RENOVATE_TOKEN": "renovate-token"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"ms-azuretools.vscode-docker"
+			],
+			"settings": {
+				"terminal.integrated.shell.linux": "/bin/bash"
+			}
+		}
+	},
+	"postStartCommand": "pnpm config set store-dir /home/node/.cache/pnpm && pnpm install"
+}

@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "ESNEXT",
+      "module": "ESNext",
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "strict": true,
+      "outDir": "./dist",
+      "rootDir": "./",
+      "types": ["node", "vitest/globals"],
+      "skipLibCheck": true
+    },
+    "include": ["index.ts","src/**/*.ts"],
+    "exclude": ["node_modules"]
+  }
