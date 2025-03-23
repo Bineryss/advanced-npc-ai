@@ -6,6 +6,14 @@ export type Npc = {
     location: {
         home: string;
         current: string;
-        destination: string | undefined;
+        path: string[];
     }
+}
+
+export type Destination = {
+    name: string;
+    provides: {
+        type: Need;
+        ammount: number;
+    };
 }
