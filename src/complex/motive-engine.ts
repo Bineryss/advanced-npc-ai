@@ -1,11 +1,5 @@
 import { log } from "console";
-import { ActiveAction, Motive, MotiveRatingFunction, WorldObject } from "./types";
-
-export type ScoredInteraction = {
-    name: string,
-    interaction: string,
-    score: number,
-}
+import { ActiveAction, Motive, MotiveRatingFunction, ScoredInteraction, Sim, WorldObject } from "./types";
 
 export type MotiveMap = Map<Motive, number>
 export type MotiveRatingEngine = Map<Motive, MotiveRatingFunction>
@@ -47,6 +41,6 @@ export function scoreInteraction(motiveValues: MotiveMap, multiplier: number, ad
         const ratingFunction = ratingEngine.get(motive)
         const simMotiveValue = motiveValues.get(motive)
         if (!ratingFunction || simMotiveValue === undefined) return accumulator
-        return accumulator + (interactionValue * ratingFunction(simMotiveValue)) + multiplier * 20
+        return Math.round(accumulator + (interactionValue * ratingFunction(simMotiveValue)) + multiplier * 20)
     }, 0)
 }

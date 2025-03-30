@@ -1,4 +1,3 @@
-import { log } from "console"
 import { rateInteractions } from "./motive-engine"
 import { Motive, Sim, WorldObject } from "./types"
 
@@ -14,6 +13,7 @@ export function createSim(name: string, motives: Motive[]): Sim {
         location: 0,
         motives: new Map(motives.map(motive => [motive, 0])),
         currentAction: { object: 'home', action: 'idle', timeLeft: 0 },
+        currentRatingMatrix: [],
     }
 }
 
@@ -42,13 +42,15 @@ export function updateMotives(sim: Sim): Sim {
     }, updatedSim)
 }
 
-export function selectNextAction(sim: Sim, objects: WorldObject[]): { object: WorldObject, action: string } | undefined {
+export function selectNextAction(sim: Sim, objects: WorldObject[]): { sim: Sim, object?: WorldObject, action?: string } {
     const scoredActions = rateInteractions(sim.motives, objects, sim.currentAction);
     const selectedAction = scoredActions[0]
     const selectedObject = objects.find(el => el.name === scoredActions[0].name)
-    if (!selectedAction || !selectedObject) return;
+    const simWithScores: Sim = { ...sim, currentRatingMatrix: scoredActions }
+    if (!selectedAction || !selectedObject) return { sim: simWithScores };
 
     return {
+        sim: simWithScores,
         object: selectedObject,
         action: selectedAction.interaction
     }

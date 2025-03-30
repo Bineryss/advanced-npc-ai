@@ -13,11 +13,18 @@ export type Motive =
  */
 export type MotiveRatingFunction = (value: number) => number
 
+export type ScoredInteraction = {
+    name: string,
+    interaction: string,
+    score: number,
+}
+
 export type Sim = {
     name: string,
     location: number,
     motives: Map<Motive, number>,
     currentAction: ActiveAction,
+    currentRatingMatrix: ScoredInteraction[]
 }
 
 export type WorldObject = {

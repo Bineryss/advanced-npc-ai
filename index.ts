@@ -1,5 +1,3 @@
-import { startSimmulation } from "./src/complex/core-systems";
-import { runSimmulation } from "./src/core-system";
+import { startConsoleSimmulation } from "./src/complex/output-systems/interface";
 
-// runSimmulation()
-startSimmulation()
+startConsoleSimmulation()
