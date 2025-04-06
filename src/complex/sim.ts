@@ -1,6 +1,7 @@
 import { rateInteractions } from "./motive-engine"
 import { Motive, Sim, WorldObject } from "./types"
 
+//TODO let sims pick new motives at randomor under specific circumstances?
 // const moods: Map<Motive, (value: number) => string> = new Map([
 //     ['sleep', (value) => value >= 0 ? 'neutral' : 'sleepy'],
 //     ['hungry', (value) => value >= 0 ? 'neutral' : 'hangry'],
@@ -17,8 +18,11 @@ export function createSim(name: string, motives: Motive[]): Sim {
     }
 }
 
-function changeMotive(sim: Sim, motive: Motive, value: number): Sim {
-    const oldValue = sim.motives.get(motive) ?? 0
+function updateMotive(sim: Sim, motive: Motive, value: number): Sim {
+    const oldValue = sim.motives.get(motive)
+
+    if (oldValue === undefined) return { ...sim }
+
     const newValue = Math.min(Math.max(oldValue + value, -100), 100)
     const newMotives = sim.motives
     newMotives.set(motive, newValue)
@@ -38,7 +42,7 @@ export function updateMotives(sim: Sim): Sim {
     }
     const motives = updatedSim.motives.keys()
     return motives.reduce((accumulator, motive) => {
-        return changeMotive(accumulator, motive, -5)
+        return updateMotive(accumulator, motive, -5)
     }, updatedSim)
 }
 
@@ -71,6 +75,6 @@ export function interact(sim: Sim, object: WorldObject, action: string): Sim {
     const motives = object.interactions.find(el => el.name === action)?.advertments.entries()
 
     return motives?.reduce((accumulator, [motive, value]) => {
-        return changeMotive(accumulator, motive, value)
+        return updateMotive(accumulator, motive, value)
     }, simWithAction) ?? simWithAction
 }

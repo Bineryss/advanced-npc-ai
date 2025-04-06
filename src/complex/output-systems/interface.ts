@@ -1,6 +1,6 @@
 import { clear, log, table } from "console";
 import { createInterface } from "readline";
-import { INITIAL_SIM_POPULATION, INITIAL_WORLD_OBJECTS, updateCylce } from "../core-systems";
+import { INITIAL_SIM_POPULATION, INITIAL_WORLD_OBJECTS, updateCycle } from "../core-systems";
 import { Sim } from "../types";
 
 export function startConsoleSimmulation() {
@@ -11,7 +11,7 @@ export function startConsoleSimmulation() {
     }
 
     const intervalId = setInterval(() => {
-        simState = updateCylce(simState)
+        simState = updateCycle(simState)
         render(simState.sims, simState.cycle)
         console.log('Enter "C" to stop execution');
     }, 1000)

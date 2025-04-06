@@ -1,13 +1,16 @@
 
-export type Motive =
+export const motives = [
     'sleep'
-    | 'hunger'
-    | 'social'
-    | 'hygene'
-    | 'culinary'
-    | 'outdoor'
-    | 'sport'
-    | 'knowlegable'
+    , 'hunger'
+    , 'social'
+    , 'hygene'
+    , 'culinary'
+    , 'outdoor'
+    , 'sport'
+    , 'knowlegable'
+] as const
+
+export type Motive = typeof motives[number]
 /**
  * calculates the value of a motive
  */

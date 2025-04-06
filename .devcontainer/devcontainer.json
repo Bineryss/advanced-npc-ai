@@ -16,7 +16,10 @@
 			"extensions": [
 				"dbaeumer.vscode-eslint",
 				"esbenp.prettier-vscode",
-				"ms-azuretools.vscode-docker"
+				"ms-azuretools.vscode-docker",
+				"github.vscode-github-actions",
+				"yoavbls.pretty-ts-errors",
+				"vitest.explorer"
 			],
 			"settings": {
 				"terminal.integrated.shell.linux": "/bin/bash"

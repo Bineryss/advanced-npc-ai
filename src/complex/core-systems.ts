@@ -10,10 +10,10 @@ export type SimmulationState = {
 }
 
 export const INITIAL_SIM_POPULATION: Sim[] = [
-    createSim('Oliver Brown', ['sleep', 'hunger', 'social', 'sport', 'hygene']),
-    createSim('Astrid Raven', ['sleep', 'knowlegable', 'hygene']),
+    // createSim('Oliver Brown', ['sleep', 'hunger', 'social', 'sport', 'hygene']),
+    // createSim('Astrid Raven', ['sleep', 'knowlegable', 'hygene']),
     createSim('Luna Cromwell', ['sleep', 'social', 'hygene', 'culinary', 'outdoor']),
-    createSim('Melissa Langley', ['sleep', 'hygene', 'culinary']),
+    // createSim('Melissa Langley', ['sleep', 'hygene', 'culinary']),
 ] as const
 
 export const INITIAL_WORLD_OBJECTS: WorldObject[] = [
@@ -29,7 +29,7 @@ export const INITIAL_WORLD_OBJECTS: WorldObject[] = [
     createWorldObject('club', [{ name: 'party', advertments: new Map([['social', 20]]), duration: 4 }]),
 ] as const
 
-export function updateCylce(state: SimmulationState): SimmulationState {
+export function updateCycle(state: SimmulationState): SimmulationState {
     const { sims, worldObjects, cycle } = state
 
     return {
